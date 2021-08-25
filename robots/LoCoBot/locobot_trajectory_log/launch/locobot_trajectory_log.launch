@@ -1,0 +1,5 @@
+<launch>
+
+	<node name="collect_data_node" pkg="locobot_trajectory_log" type="logger.py" />
+
+</launch>

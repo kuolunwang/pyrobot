@@ -18,7 +18,7 @@ class LoCoBotGripper(Gripper):
     Interface for gripper
     """
 
-    def __init__(self, configs, wait_time=3):
+    def __init__(self, configs, wait_time=1):
         """
         The constructor for LoCoBotGripper class.
 
