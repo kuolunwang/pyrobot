@@ -2,7 +2,6 @@
 
 import rospy
 import rospkg
-import argparse
 import os
 import time
 from std_srvs.srv import Trigger, TriggerResponse
@@ -148,6 +147,7 @@ class Collect(object):
 
                 ti = time.time()
                 timestamp = str(ti)
+                time.sleep(0.1)
 
                 self.writer_traj_csv(log_path, "trajectory_info", self.traj_info, timestamp)
                 self.writer_gra_csv(log_path, "grasped_info", self.grasped_info, timestamp)
@@ -161,11 +161,8 @@ class Collect(object):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Set up some initial parameter')
-
-    parser.add_argument('--number', type=int, default = 0)
-    args = parser.parse_args()
-
     rospy.init_node("collect_data_node")
-    collecter = Collect(args.number)
+
+    number = rospy.get_param("number")
+    collecter = Collect(number)
     rospy.spin()

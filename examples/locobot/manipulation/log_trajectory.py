@@ -31,7 +31,7 @@ def main():
     bot = Robot('locobot')
     bot.arm.go_home()
     
-    for joint in target_joints[1:-1:50]:
+    for joint in target_joints[1:-1:10]:
 
         bot.arm.set_joint_positions([float(x) for x in joint[0:5]], plan=False)
         gripper_value = float(joint[5])
