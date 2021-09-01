@@ -17,6 +17,8 @@ def main():
     parser = argparse.ArgumentParser(description='log trajectory csv file to control robot joint state')
 
     parser.add_argument('path', type=str, help="input trajectory csv file")
+    parser.add_argument('--fps', type=int, default=10 , help="log csv fps")
+    parser.add_argument('--ofps', type=int, default=1, help="output fps")
     args = parser.parse_args()
 
     target_joints = []
@@ -31,7 +33,7 @@ def main():
     bot = Robot('locobot')
     bot.arm.go_home()
     
-    for joint in target_joints[1:-1:10]:
+    for joint in target_joints[1:-1:args.fps/args.ofps]:
 
         bot.arm.set_joint_positions([float(x) for x in joint[0:5]], plan=False)
         gripper_value = float(joint[5])
